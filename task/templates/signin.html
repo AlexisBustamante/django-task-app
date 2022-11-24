@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="container py-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-4">
+            {% if error %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Ups! </strong> {{error}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endif %}
+
+            <form action="/signin/" method="POST" class="card card-body">
+                <h1 class="text-center">
+                    Sign In
+                </h1>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="password">
+                </div>
+                <button class="btn btn-primary"> Sign In</button>
+            </form>
+
+        </div>
+    </div>
+</main>
+
+
+<form action="/signin/" method="post">
+
+</form>
+{% endblock %}

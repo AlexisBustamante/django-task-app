@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        {% if error %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Ups! </strong> {{error}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endif %}
+
+        <div class="col-md-6 offset-md-4">
+
+            <form action="" method="POST" class="card card-body">
+                <h1>
+                    {{task.title}}
+                </h1>
+                {% csrf_token %}
+                {{form}}
+                <button class="btn btn-success">Update</button>
+            </form>
+
+            <form action="{% url 'complete_task' task.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-primary">Complete</button>
+            </form>
+
+            <form action="{% url 'delete_task' task.id %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-danger">Delete</button>
+            </form>
+
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock %}
